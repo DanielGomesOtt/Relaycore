@@ -32,6 +32,21 @@ CREATE TABLE destinations (
       created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+-- =============================================================================
+-- TABELA: DESTINATION_SUBSCRIPTIONS (Quais eventos cada destino escuta)
+-- =============================================================================
+CREATE TABLE destination_subscriptions (
+   id VARCHAR(36) PRIMARY KEY,
+   destination_id VARCHAR(36) NOT NULL,
+   event_type VARCHAR(100) NOT NULL, -- Ex: 'order.completed', 'payment.approved'
+   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+   CONSTRAINT fk_sub_destination FOREIGN KEY (destination_id) REFERENCES destinations(id) ON DELETE CASCADE,
+   CONSTRAINT uk_destination_event UNIQUE (destination_id, event_type)
+);
+
+CREATE INDEX idx_sub_event_type ON destination_subscriptions(event_type);
+
 
 -- =============================================================================
 -- TABELA 3: DELIVERIES (Estado de cada entrega Evento x Destino)
