@@ -2,7 +2,7 @@
 -- TABELA 1: EVENTS (Eventos recebidos pela API)
 -- =============================================================================
 CREATE TABLE events (
-    id VARCHAR(36) PRIMARY KEY,
+    id UUID PRIMARY KEY,
     event_type VARCHAR(100) NOT NULL,
     payload JSONB NOT NULL,
     idempotency_key VARCHAR(150),
@@ -22,7 +22,7 @@ CREATE INDEX idx_events_created_at ON events(created_at);
 -- TABELA 2: DESTINATIONS (Configuração dos destinos HTTP de webhooks)
 -- =============================================================================
 CREATE TABLE destinations (
-      id VARCHAR(36) PRIMARY KEY,
+      id UUID PRIMARY KEY,
       name VARCHAR(100) NOT NULL,
       url VARCHAR(500) NOT NULL,
       enabled BOOLEAN NOT NULL DEFAULT TRUE,
@@ -36,8 +36,8 @@ CREATE TABLE destinations (
 -- TABELA: DESTINATION_SUBSCRIPTIONS (Quais eventos cada destino escuta)
 -- =============================================================================
 CREATE TABLE destination_subscriptions (
-   id VARCHAR(36) PRIMARY KEY,
-   destination_id VARCHAR(36) NOT NULL,
+   id UUID PRIMARY KEY,
+   destination_id UUID NOT NULL,
    event_type VARCHAR(100) NOT NULL, -- Ex: 'order.completed', 'payment.approved'
    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -52,9 +52,9 @@ CREATE INDEX idx_sub_event_type ON destination_subscriptions(event_type);
 -- TABELA 3: DELIVERIES (Estado de cada entrega Evento x Destino)
 -- =============================================================================
 CREATE TABLE deliveries (
-    id VARCHAR(36) PRIMARY KEY,
-    event_id VARCHAR(36) NOT NULL,
-    destination_id VARCHAR(36) NOT NULL,
+    id UUID PRIMARY KEY,
+    event_id UUID NOT NULL,
+    destination_id UUID NOT NULL,
     status VARCHAR(30) NOT NULL, -- PENDING, PROCESSING, RETRY_SCHEDULED, SUCCEEDED, DEAD, CANCELLED
     attempt_count INTEGER NOT NULL DEFAULT 0,
     next_attempt_at TIMESTAMP WITH TIME ZONE,
@@ -76,8 +76,8 @@ CREATE INDEX idx_deliveries_locked_until ON deliveries(locked_until);
 -- TABELA 4: DELIVERY_ATTEMPTS (Histórico de cada tentativa de envio)
 -- =============================================================================
 CREATE TABLE delivery_attempts (
-   id VARCHAR(36) PRIMARY KEY,
-   delivery_id VARCHAR(36) NOT NULL,
+   id UUID PRIMARY KEY,
+   delivery_id UUID NOT NULL,
    attempt_number INTEGER NOT NULL,
    http_status INTEGER,
    duration_ms BIGINT,
@@ -94,8 +94,8 @@ CREATE INDEX idx_delivery_attempts_delivery_id ON delivery_attempts(delivery_id,
 -- TABELA 5: OUTBOX_MESSAGES (Padrão Transactional Outbox para publicação confiável)
 -- =============================================================================
 CREATE TABLE outbox_messages (
-     id VARCHAR(36) PRIMARY KEY,
-     aggregate_id VARCHAR(36) NOT NULL,
+     id UUID PRIMARY KEY,
+     aggregate_id UUID NOT NULL,
      message_type VARCHAR(100) NOT NULL,
      payload_ref VARCHAR(255),
      created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
