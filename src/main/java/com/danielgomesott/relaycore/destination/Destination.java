@@ -3,6 +3,8 @@ package com.danielgomesott.relaycore.destination;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -36,6 +38,9 @@ public class Destination {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt = Instant.now();
+
+    @OneToMany(mappedBy = "destination", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DestinationSubscription> subscriptions = new ArrayList<>();
 
     public UUID getId() {
         return id;
@@ -99,6 +104,14 @@ public class Destination {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<DestinationSubscription> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(List<DestinationSubscription> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 
     @Override
