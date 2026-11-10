@@ -6,7 +6,16 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "destination_subscriptions")
+@Table(name = "destination_subscriptions",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "uk_destination_event",
+                        columnNames = {"destination_id", "event_type"}
+                )
+        },
+        indexes = {
+                @Index(name = "idx_sub_event_type", columnList = "event_type")
+        })
 public class DestinationSubscription {
 
     public DestinationSubscription() {}

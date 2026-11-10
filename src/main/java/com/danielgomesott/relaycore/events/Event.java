@@ -9,7 +9,10 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "events")
+@Table(name = "events",
+        indexes = {
+                @Index(name = "idx_events_created_at", columnList = "created_at")
+        })
 public class Event {
 
     public Event(){}
