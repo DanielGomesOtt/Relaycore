@@ -9,13 +9,25 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "deliveries",
+@Table(
+        name = "deliveries",
         uniqueConstraints = {
                 @UniqueConstraint(
                         name = "uk_deliveries_event_destination",
                         columnNames = {"event_id", "destination_id"}
                 )
-        })
+        },
+        indexes = {
+                @Index(
+                        name = "idx_deliveries_status_next_attempt",
+                        columnList = "status, next_attempt_at"
+                ),
+                @Index(
+                        name = "idx_deliveries_locked_until",
+                        columnList = "locked_until"
+                )
+        }
+)
 public class Delivery {
 
     public Delivery() {}
