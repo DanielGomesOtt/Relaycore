@@ -10,7 +10,6 @@ import java.util.UUID;
 @Table(
         name = "delivery_attempts",
         indexes = {
-                // Índice composto para buscar o histórico ordenado das tentativas de uma entrega específica
                 @Index(
                         name = "idx_delivery_attempts_delivery_id",
                         columnList = "delivery_id, attempt_number"
