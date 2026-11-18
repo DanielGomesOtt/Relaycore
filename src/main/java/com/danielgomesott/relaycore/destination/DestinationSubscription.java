@@ -34,6 +34,11 @@ public class DestinationSubscription {
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt = Instant.now();
 
+    public DestinationSubscription(Destination destination, String eventType) {
+        this.destination = destination;
+        this.eventType = eventType;
+    }
+
     public UUID getId() {
         return id;
     }
