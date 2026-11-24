@@ -1,4 +1,7 @@
-package com.danielgomesott.relaycore.destination;
+package com.danielgomesott.relaycore.destination.dto;
+
+import com.danielgomesott.relaycore.destination.entities.Destination;
+import com.danielgomesott.relaycore.destination.entities.DestinationSubscription;
 
 import java.time.Instant;
 import java.util.List;

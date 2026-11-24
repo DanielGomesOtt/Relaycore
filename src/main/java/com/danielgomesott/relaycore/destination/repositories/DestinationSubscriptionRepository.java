@@ -1,5 +1,6 @@
-package com.danielgomesott.relaycore.destination;
+package com.danielgomesott.relaycore.destination.repositories;
 
+import com.danielgomesott.relaycore.destination.entities.DestinationSubscription;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

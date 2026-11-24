@@ -1,5 +1,11 @@
-package com.danielgomesott.relaycore.destination;
+package com.danielgomesott.relaycore.destination.services;
 
+import com.danielgomesott.relaycore.destination.entities.DestinationSubscription;
+import com.danielgomesott.relaycore.destination.dto.CreateDestinationRequest;
+import com.danielgomesott.relaycore.destination.dto.CreateDestinationResponse;
+import com.danielgomesott.relaycore.destination.entities.Destination;
+import com.danielgomesott.relaycore.destination.exceptions.DestinationAlreadyExistsException;
+import com.danielgomesott.relaycore.destination.repositories.DestinationRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

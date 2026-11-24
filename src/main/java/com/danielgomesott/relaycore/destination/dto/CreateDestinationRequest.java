@@ -1,4 +1,4 @@
-package com.danielgomesott.relaycore.destination;
+package com.danielgomesott.relaycore.destination.dto;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

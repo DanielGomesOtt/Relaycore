@@ -1,4 +1,4 @@
-package com.danielgomesott.relaycore.delivery;
+package com.danielgomesott.relaycore.delivery.enums;
 
 public enum DeliveryStatus {
     PENDING,

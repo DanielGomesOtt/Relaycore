@@ -1,7 +1,8 @@
-package com.danielgomesott.relaycore.delivery;
+package com.danielgomesott.relaycore.delivery.entities;
 
-import com.danielgomesott.relaycore.destination.Destination;
-import com.danielgomesott.relaycore.events.Event;
+import com.danielgomesott.relaycore.delivery.enums.DeliveryStatus;
+import com.danielgomesott.relaycore.destination.entities.Destination;
+import com.danielgomesott.relaycore.events.entities.Event;
 import jakarta.persistence.*;
 
 import java.time.Instant;

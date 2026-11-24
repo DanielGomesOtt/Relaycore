@@ -1,5 +1,6 @@
-package com.danielgomesott.relaycore.messaging;
+package com.danielgomesott.relaycore.messaging.repositories;
 
+import com.danielgomesott.relaycore.messaging.entities.OutboxMessage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

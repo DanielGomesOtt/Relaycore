@@ -1,4 +1,4 @@
-package com.danielgomesott.relaycore.messaging;
+package com.danielgomesott.relaycore.messaging.entities;
 
 import jakarta.persistence.*;
 import java.time.Instant;

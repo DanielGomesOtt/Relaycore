@@ -1,5 +1,8 @@
-package com.danielgomesott.relaycore.destination;
+package com.danielgomesott.relaycore.destination.controllers;
 
+import com.danielgomesott.relaycore.destination.services.DestinationService;
+import com.danielgomesott.relaycore.destination.dto.CreateDestinationRequest;
+import com.danielgomesott.relaycore.destination.dto.CreateDestinationResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;

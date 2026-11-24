@@ -1,4 +1,4 @@
-package com.danielgomesott.relaycore.events;
+package com.danielgomesott.relaycore.events.entities;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
